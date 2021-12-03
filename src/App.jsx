@@ -13,6 +13,8 @@ import {
 } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Canceled from './pages/Canceled';
+import ScrollToTop from './components/ScrollToTop';
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Switch>
         <Route exact path="/">
           <Home/>

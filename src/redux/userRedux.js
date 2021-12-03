@@ -6,21 +6,25 @@ const userSlice = createSlice({
     initialState: {
         currentUser: null,
         isFethcing: false,
-        error: false
+        error: false,
+        teste: false
     },
     reducers: {
+        // Login Reducers
         loginStart: (state) => {
             state.isFethcing = true
         },
         loginSuccess: (state, action) => {
             state.isFethcing = false
             state.currentUser = action.payload
+            state.error = false
+
         },
         loginFailure: (state) => {
             state.isFethcing = false
             state.error = true
-
         },
+        // Logout Reducers
         logoutStart: (state) => {
             state.isFethcing = true
         },
@@ -31,15 +35,17 @@ const userSlice = createSlice({
         logoutFailure: (state) => {
             state.error = true
         },
+        // Register Reducers
         registerStart: (state) => {
             state.isFethcing = true
         },
         registerSuccess: (state, action) => {
             state.isFethcing = false
             state.currentUser = action.payload
-            state.error = false
+            state.error = false 
         },
         registerFailure: (state) => {
+            state.isFethcing = false
             state.error = true
         }
         

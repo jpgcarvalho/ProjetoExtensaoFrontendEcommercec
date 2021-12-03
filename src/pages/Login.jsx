@@ -77,14 +77,12 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const { isFetching, error } = useSelector(state => state.user)
-    const history = useHistory()
 
 
     const handleClick = async (e) => {
         e.preventDefault()
-        await login(dispatch, { email, password })  
-        history.goBack()
-
+        const res = await login(dispatch, { email, password })  
+        console.log(res)
     }
 
     return (
@@ -96,7 +94,7 @@ const Login = () => {
                         <Input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
                         <Input placeholder="Senha" type="password" onChange={(e) => setPassword(e.target.value)} />
                         <Button onClick={handleClick} disabled={isFetching}>Iniciar Sessão</Button>
-                        {error && <Error>Alguma coisa deu errado... Verifique se eles estão corretos</Error>}
+                        {error && <Error>Alguma coisa deu errado... Verifique se os dados fornecidos estão corretos</Error>}
                         <Link>Esqueceu a Senha?</Link>
                         <Link>Criar uma nova Conta</Link>
                     </Form>

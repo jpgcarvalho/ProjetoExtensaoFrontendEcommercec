@@ -116,7 +116,7 @@ const Register = () => {
                             <ShowButton onClick={togglePassword}>Mostrar senha</ShowButton>
                         </InputContainer>
                         <Button type="submit">Criar</Button>
-                        {error && <span>Alguma coisa deu errado... Verifique se os dados estão corretos</span>}
+                        {/* {error && <span>Alguma coisa deu errado... Verifique se os dados estão corretos</span>} */}
                     </Form>
                 </Wrapper>
             </FormContainer>

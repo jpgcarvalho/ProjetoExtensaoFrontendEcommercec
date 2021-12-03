@@ -9,8 +9,10 @@ import { useSelector } from 'react-redux'
 import { userRequest } from '../requestMethods'
 import { useStripe } from '@stripe/react-stripe-js'
 import { useDispatch } from 'react-redux'
-import { resetCart } from '../redux/cartRedux'
+import { removeProduct, resetCart } from '../redux/cartRedux'
 import { useHistory } from 'react-router-dom'
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 
 const Container = styled.div``
@@ -211,6 +213,10 @@ const Cart = () => {
         }
     }
 
+    const handleDelete = (product) => {
+        dispatch(removeProduct(product))
+
+    }
 
     return (
         <Container>
@@ -221,16 +227,16 @@ const Cart = () => {
                 <Top>
                     <TopButton>Continuar Comprando</TopButton>
                     <TopTexts>
-                        <TopText>Carrinho de Compras(2)</TopText>
+                        <TopText >Carrinho de Compras({cart.quantity})</TopText>
                     </TopTexts>
-                    <TopButton type="filled">Finalizar Compra</TopButton>
+                    <TopButton type="filled" onClick={() => dispatch(resetCart())}>Finalizar Compra</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
                         {cart.products.map(product => (
                             <Product key={product._id}>
                             <ProductDetail>
-                                <Image src={product.productImage}/>
+                                <Image src={product.productImage} />
                                 <Details>
                                     <ProductName><b>Produto:</b> {product.productName}</ProductName>
                                     <ProductId><b>ID:</b> {product._id}</ProductId>
@@ -245,6 +251,7 @@ const Cart = () => {
                                     <Add />
                                 </ProductAmountContainer>
                                 <ProductPrice>$ {product.productPrice*product.quantity}</ProductPrice>
+                                <DeleteIcon onClick={() => handleDelete(product)} />
                             </PriceDetail>
                         </Product>
                         
