@@ -1,4 +1,3 @@
-import { SpaRounded } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -6,6 +5,7 @@ import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { register } from '../redux/apiCalls'
 import { mobile } from '../responsive'
+import { Visibility } from '@material-ui/icons'
 
 const Container = styled.div`
     background-image: radial-gradient( circle 953px at 10% 20%,  rgba(22,79,141,1) 0%, rgba(13,16,47,1) 100.2% );
@@ -33,7 +33,7 @@ const Title = styled.h1`
 
 const Form = styled.form `
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 `
 
 const Input = styled.input`
@@ -57,23 +57,20 @@ const Button = styled.button`
 
 
 const InputContainer = styled.div`
-    width: 50%;
-    height: 40px;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid lightgray;
-    ${mobile({ width: "90%"})}
-    margin: 20px 10px 0 0;
-`
-const ShowButton = styled.button`
     flex: 1;
+    display: flex;
+    border: 1px solid black;
+    margin: 20px 10px 0 0;
+    padding: 10px;
 `
 
 const InputPassword = styled.input`
-    border: none;
     flex: 8;
-    padding-left: 20px;
+    border: none;
+
+    &:focus {
+        outline: none;
+    }
 `
 
 const Register = () => {
@@ -113,7 +110,7 @@ const Register = () => {
                         <Input name="phone" placeholder="Telefone" type="tel" pattern="[0-9]{3}[0-9]{1}[0-9]{4}[0-9]{4}" required onChange={handleChange} />
                         <InputContainer>
                             <InputPassword name="password" placeholder="Senha" type={passwordShown ? "text" : "password"} required onChange={handleChange} />
-                            <ShowButton onClick={togglePassword}>Mostrar senha</ShowButton>
+                            <Visibility onClick={togglePassword} style={{flex: 1}}/>
                         </InputContainer>
                         <Button type="submit">Criar</Button>
                         {/* {error && <span>Alguma coisa deu errado... Verifique se os dados estão corretos</span>} */}

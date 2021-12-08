@@ -1,8 +1,13 @@
-import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Success = () => {
-    const history = useHistory()
+    const user = useSelector(state => state.user.currentUser)
+
+    useEffect(() => {
+        
+    }, [])
    
     return(
         <div>

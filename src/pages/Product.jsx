@@ -1,7 +1,7 @@
 import { Add, Remove } from '@material-ui/icons'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
@@ -125,6 +125,7 @@ const Button = styled.button`
 `
 
 const Product = () => {
+    const history = useHistory()
     const location = useLocation()
     const id = location.pathname.split("/")[2]
     const [product, setProduct] = useState([])
@@ -157,6 +158,8 @@ const Product = () => {
         dispatch(
             addProduct({ ...product, quantity, productColor: color, productSize: size})
         )
+        history.push('/cart')
+
     }
 
 

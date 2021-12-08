@@ -77,12 +77,14 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const { isFetching, error } = useSelector(state => state.user)
+    const history = useHistory()
 
 
     const handleClick = async (e) => {
         e.preventDefault()
-        const res = await login(dispatch, { email, password })  
-        console.log(res)
+        await login(dispatch, { email, password })  
+        window.location.reload(false)
+        // history.goBack()
     }
 
     return (

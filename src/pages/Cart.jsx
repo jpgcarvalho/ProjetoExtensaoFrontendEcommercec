@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { userRequest } from '../requestMethods'
 import { useStripe } from '@stripe/react-stripe-js'
 import { useDispatch } from 'react-redux'
-import { removeProduct, resetCart } from '../redux/cartRedux'
+import { addQuant, removeProduct, resetCart } from '../redux/cartRedux'
 import { useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -174,6 +174,8 @@ const Cart = () => {
     const history = useHistory()
     const dispatch = useDispatch()
 
+
+    console.log(cart.products)
     const handleClick = async () => {
         if(!user){
             history.push('/login')
@@ -218,6 +220,12 @@ const Cart = () => {
 
     }
 
+    const handleQuantity = (type, product) => {
+        if(type === 'dec'){
+            product.quantity > 1 && dispatch(addQuant(product)) 
+        }
+    }
+
     return (
         <Container>
             <Announcement />
@@ -233,8 +241,8 @@ const Cart = () => {
                 </Top>
                 <Bottom>
                     <Info>
-                        {cart.products.map(product => (
-                            <Product key={product._id}>
+                        {cart.products.map((product, index) => (
+                            <Product key={index}>
                             <ProductDetail>
                                 <Image src={product.productImage} />
                                 <Details>
@@ -246,12 +254,12 @@ const Cart = () => {
                             </ProductDetail>
                             <PriceDetail>
                                 <ProductAmountContainer>
-                                    <Remove />
+                                    <Remove onClick={() => handleQuantity('dec', product)} />
                                     <ProductAmount>{product.quantity}</ProductAmount>
-                                    <Add />
+                                    <Add onClick={() => handleQuantity('inc', product)} />
                                 </ProductAmountContainer>
                                 <ProductPrice>$ {product.productPrice*product.quantity}</ProductPrice>
-                                <DeleteIcon onClick={() => handleDelete(product)} />
+                                <DeleteIcon onClick={() => handleDelete(product)} style={{cursor: 'pointer'}}/>
                             </PriceDetail>
                         </Product>
                         
