@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { userRequest } from '../requestMethods'
 import { useStripe } from '@stripe/react-stripe-js'
 import { useDispatch } from 'react-redux'
-import { addQuant, removeProduct, resetCart } from '../redux/cartRedux'
+import { remQuant, removeProduct, resetCart } from '../redux/cartRedux'
 import { useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -222,7 +222,7 @@ const Cart = () => {
 
     const handleQuantity = (type, product) => {
         if(type === 'dec'){
-            product.quantity > 1 && dispatch(addQuant(product)) 
+            product.quantity > 1 && dispatch(remQuant(product)) 
         }
     }
 

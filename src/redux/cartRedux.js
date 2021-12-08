@@ -25,9 +25,12 @@ const cartSlice = createSlice({
             state.products = []
             state.total = 0
         },
+        remQuant: (state, action) => {
+            
+        }
 
     }
 })
 
-export const { addProduct, resetCart, removeProduct, addQuant } = cartSlice.actions
+export const { addProduct, resetCart, removeProduct, remQuant } = cartSlice.actions
 export default cartSlice.reducer
