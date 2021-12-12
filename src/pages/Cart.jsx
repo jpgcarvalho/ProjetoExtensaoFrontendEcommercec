@@ -237,7 +237,7 @@ const Cart = () => {
                     <TopTexts>
                         <TopText >Carrinho de Compras({cart.quantity})</TopText>
                     </TopTexts>
-                    <TopButton type="filled" onClick={() => dispatch(resetCart())}>Finalizar Compra</TopButton>
+                    <TopButton type="filled" onClick={() => dispatch(resetCart())}>Excluir Carrinho</TopButton>
                 </Top>
                 <Bottom>
                     <Info>

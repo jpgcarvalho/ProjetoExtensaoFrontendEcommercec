@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Search, ShoppingCartOutlined } from '@material-ui/icons'
+import { Search, ShoppingCartOutlined, PersonOutlineOutlined } from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
 import { mobile } from '../responsive'
 import { Link } from 'react-router-dom'
@@ -80,10 +80,15 @@ const MenuItem = styled.div`
     
 `
 
+
+
+
 const NavBar = () => {
     const user = useSelector(state => state.user.currentUser)
     const quantity = useSelector(state => state.cart.quantity)
     const dispatch = useDispatch()
+
+    const userName = user?.name.split(' ')[0]
 
     const handleClick = async (e) => {
         e.preventDefault()
@@ -95,9 +100,6 @@ const NavBar = () => {
             console.log(error)
         }
     }
-
-
-
 
     return (
         <Container>
@@ -119,8 +121,8 @@ const NavBar = () => {
                 <Right>
                     { user ? (
                         <>
-                            <span>Olá, {user.name}</span>
-                            <button onClick={handleClick}>Sair</button>
+                            <span style={{marginRight: '15px'}}>Olá, {userName}</span>
+                            <span style={{cursor: 'pointer', fontWeight: 'bold'}} onClick={handleClick}>Sair</span>
                         </>
                     )
                     : (

@@ -2,6 +2,7 @@ import { Facebook, Instagram, MailOutline, Phone, Room, Twitter } from '@materia
 import React from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
     display: flex;
@@ -86,23 +87,37 @@ const Footer = ({color}) => {
                 </Desc>
                 <SocialContainer>
                     <SocialIcon>
-                        <Facebook />
+                        <Link to="https://facebook.com" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                            <Facebook />
+                        </Link>
                     </SocialIcon>
                     <SocialIcon>
-                        <Instagram/>
+                        <Link to="/" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                            <Instagram/>
+                        </Link>
                     </SocialIcon>
                     <SocialIcon>
-                        <Twitter/>
+                        <Link to="/" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                            <Twitter/>
+                        </Link>
                     </SocialIcon>
                 </SocialContainer>
             </Left>
             <Center>
                 <Title>Menu</Title>
                 <List>
-                    <ListItem>Início</ListItem>
-                    <ListItem>Produtos</ListItem>
-                    <ListItem>Contato</ListItem>
-                    <ListItem>Saiba+</ListItem>
+                    <Link to="/" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                        <ListItem>Início</ListItem>
+                    </Link>
+                    <Link to="/products" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                        <ListItem>Produtos</ListItem>
+                    </Link>
+                    <Link to="/" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                        <ListItem>Contato</ListItem>
+                    </Link>
+                    <Link to="/" style={{ textDecoration: "none", color: color === 'white' ? 'white' : 'black' }}>
+                        <ListItem>Saiba</ListItem>
+                    </Link>
                 </List>
             </Center>
             <Right>

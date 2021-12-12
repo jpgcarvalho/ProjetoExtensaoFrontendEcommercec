@@ -14,6 +14,8 @@ import {
 import { useSelector } from 'react-redux';
 import Canceled from './pages/Canceled';
 import ScrollToTop from './components/ScrollToTop';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 
 function App() {
@@ -50,6 +52,12 @@ function App() {
         </Route>
         <Route path="/register">
           {user ? <Redirect to="/" /> : <Register />}
+        </Route>
+        <Route path="/forgot_password">
+          {user ? <Redirect to="/" /> : <ForgotPassword />}
+        </Route>
+        <Route path="/reset_password">
+          {user ? <Redirect to="/" /> : <ResetPassword />}
         </Route>
       </Switch>
     </Router>

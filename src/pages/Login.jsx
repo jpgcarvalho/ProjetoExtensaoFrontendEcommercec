@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import { login } from '../redux/apiCalls'
@@ -60,12 +60,6 @@ const Button = styled.button`
     }
 
 `
-const Link = styled.a`
-    margin: 5px 0;
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-`
 
 const Error = styled.span`
     color: red;
@@ -77,7 +71,6 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const { isFetching, error } = useSelector(state => state.user)
-    const history = useHistory()
 
 
     const handleClick = async (e) => {
@@ -97,8 +90,8 @@ const Login = () => {
                         <Input placeholder="Senha" type="password" onChange={(e) => setPassword(e.target.value)} />
                         <Button onClick={handleClick} disabled={isFetching}>Iniciar Sessão</Button>
                         {error && <Error>Alguma coisa deu errado... Verifique se os dados fornecidos estão corretos</Error>}
-                        <Link>Esqueceu a Senha?</Link>
-                        <Link>Criar uma nova Conta</Link>
+                        <Link style={{margin: '5px 0', fontSize: '12px', textDecoration: 'none'}} to='/forgot_password'>Esqueceu a Senha?</Link>
+                        <Link style={{margin: '5px 0', fontSize: '12px', textDecoration: 'none'}} to='/register'>Criar uma nova Conta</Link>
                     </Form>
                 </Wrapper>
             </FormContainer>

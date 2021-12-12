@@ -39,7 +39,7 @@ const Option = styled.option``
 const ProductList = () => {
     const location = useLocation()
     const cat = location.pathname.split("/")[2]
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState([])
     const [sort, setSort] = useState("Mais recente")
 
     const handleFilters = (e) => {
@@ -54,7 +54,7 @@ const ProductList = () => {
         <Container>
             <Announcement />
             <NavBar />
-            <Title>{cat.toUpperCase()}</Title>
+            <Title>{cat?.toUpperCase()}</Title>
             <FilterContainer>
                 <Filter>
                     <FilterText>Filtrar por:</FilterText>
@@ -81,7 +81,7 @@ const ProductList = () => {
                     <Select onChange={e => setSort(e.target.value)}>
                         <Option value="newest">Mais recente</Option>
                         <Option value="asc">Preço (crescente)</Option>
-                        <Option vlaue="desc">Preço (decrescente)</Option>
+                        <Option value="desc">Preço (decrescente)</Option>
 
                     </Select>
                 </Filter>
